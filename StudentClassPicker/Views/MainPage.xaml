@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentClassPicker.MainPage"
+             BackgroundColor="#111"
+             Title="Klasy">
+
+    <HorizontalStackLayout
+        HeightRequest="700">
+
+        <VerticalStackLayout
+            WidthRequest="400"
+            HeightRequest="600"
+            Margin="20"
+            BackgroundColor="#333">
+            <Label
+                Text="Klasy"
+                WidthRequest="400"
+                FontSize="Large"
+                TextColor="White"
+                Margin="20"/>
+
+            <CollectionView
+                x:Name="MainClassList"
+                ItemsSource="{Binding ClassList}"
+                WidthRequest="400"
+                HeightRequest="400"
+                SelectionMode="Single"
+                SelectionChanged="MainClassList_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Editor
+                            x:Name="ClassNameEditor"
+                            Text="{Binding ClassName}"
+                            TextColor="White"
+                            FontSize="Medium"
+                            WidthRequest="200"
+                            BackgroundColor="#444"
+                            TextChanged="ClassNameEditor_TextChanged"/>   
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+
+            <Button
+                HeightRequest="50"
+                WidthRequest="150"
+                ImageSource="{FontImage Glyph='+', Color=White, Size=22}"
+                Text="Dodaj klasę"
+                HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout
+            WidthRequest="600"
+            HeightRequest="600"
+            Margin="20"
+            BackgroundColor="#333">
+
+            <Label
+                x:Name="SelectedClassNameLabel"
+                WidthRequest="600"
+                FontSize="Large"
+                TextColor="White"
+                Margin="20"/>
+
+            <CollectionView
+                x:Name="CurrentStudentList"
+                ItemsSource="{Binding StudentList}"
+                HeightRequest="400"
+                SelectionMode="Single">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout
+                            BackgroundColor="#444">
+
+                            <Label
+                                x:Name="StudentIDLabel"
+                                Text="{Binding studentID}"
+                                WidthRequest="50"
+                                TextColor="White"
+                                FontSize="Medium"
+                                VerticalTextAlignment="Center"
+                                HorizontalTextAlignment="Center"/>
+                            
+                            <Editor
+                                x:Name="StudentNameEditor"
+                                Text="{Binding StudentName}"
+                                TextColor="White"
+                                FontSize="Medium"
+                                WidthRequest="200"
+                                TextChanged="StudentNameEditor_TextChanged"/>
+                            
+                            <Editor
+                                x:Name="StudentSurnameEditor"
+                                Text="{Binding StudentSurname}"
+                                TextColor="White"
+                                FontSize="Medium"
+                                WidthRequest="300"
+                                TextChanged="StudentSurnameEditor_TextChanged"/>
+                            
+                            <Button
+                                x:Name="StudentDeleteButton"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                BackgroundColor="Red"
+                                ImageSource="{FontImage Glyph='&#10005;', Color=White, Size=25}"
+                                HorizontalOptions="Center"
+                                Clicked="StudentDeleteButton_Clicked"/>
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+                HeightRequest="50"
+                WidthRequest="150"
+                ImageSource="{FontImage Glyph='+', Color=White, Size=22}"
+                Text="Losuj ucznia"
+                HorizontalOptions="Center"/>    
+
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentPage>
