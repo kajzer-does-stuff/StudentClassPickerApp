@@ -14,13 +14,13 @@ namespace StudentClassPicker.Models
 
         [ObservableProperty]
         public string className;
-        public string classFileName { get; set; }
+        //public string classFileName { get; set; }
         public ObservableCollection<Student> classStudentList { get; set; }
         public Class() 
         {
             classID = 1;
             className = "Klasa";
-            classFileName = String.Empty;
+            //classFileName = String.Empty;
             classStudentList = new ObservableCollection<Student>();
         }
 
@@ -28,7 +28,7 @@ namespace StudentClassPicker.Models
         {
             this.classID = classID;
             this.className = className;
-            this.classFileName = classFileName;
+            //this.classFileName = classFileName;
             this.classStudentList = classStudentList;
         }
     }

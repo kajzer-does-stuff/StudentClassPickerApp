@@ -4,11 +4,12 @@ using System.Diagnostics;
 using System.Text.Json;
 using System.Xml.Linq;
 
-namespace StudentClassPicker
+namespace StudentClassPicker.Views
 {
     public partial class MainPage : ContentPage
     {
-        private Models.Class currentSelectedClass;
+        private Class currentSelectedClass;
+        private Student pickedStudent;
 
         public MainPage()
         {
@@ -40,14 +41,30 @@ namespace StudentClassPicker
             if(!string.IsNullOrEmpty(editedName))
             {
                 senderClass.ClassName = editedName;
-                ViewModels.ClassListViewModel.SaveClass(senderClass, senderClass.classFileName);
+                ViewModels.ClassListViewModel.SaveClass(senderClass);
             }
 
             if(currentSelectedClass == senderClass)
             {
                 SelectedClassNameLabel.Text = editedName;
             }
+        }
 
+        private async void AddClassButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddClassPage());
+        }
+
+        private async void AddStudentButton_Clicked(object sender, EventArgs e)
+        {
+            if(currentSelectedClass != null)
+            {
+                await Navigation.PushAsync(new AddStudentPage(currentSelectedClass));
+            }
+            else
+            {
+                await DisplayAlert("Błąd", "Wybierz klasę, do której chcesz dodać ucznia", "OK");
+            }            
         }
 
         private void StudentNameEditor_TextChanged(object sender, EventArgs e)
@@ -59,9 +76,10 @@ namespace StudentClassPicker
             if (!string.IsNullOrEmpty(editedName))
             {
                 senderStudent.StudentName = editedName;
-                ViewModels.ClassListViewModel.SaveClass(currentSelectedClass, currentSelectedClass.classFileName);
+                ViewModels.ClassListViewModel.SaveClass(currentSelectedClass);
             }
         }
+
         private void StudentSurnameEditor_TextChanged(object sender, EventArgs e)
         {
             Student senderStudent = (Student)(sender as Editor).BindingContext;
@@ -71,15 +89,56 @@ namespace StudentClassPicker
             if (!string.IsNullOrEmpty(editedSurname))
             {
                 senderStudent.StudentSurname = editedSurname;
-                ViewModels.ClassListViewModel.SaveClass(currentSelectedClass, currentSelectedClass.classFileName);
+                ViewModels.ClassListViewModel.SaveClass(currentSelectedClass);
             }
         }
+
         private void StudentDeleteButton_Clicked(object sender, EventArgs e)
         {
             Student senderStudent = (Student)(sender as Button).BindingContext;
 
             currentSelectedClass.classStudentList.Remove(senderStudent);
-            ViewModels.ClassListViewModel.SaveClass(currentSelectedClass, currentSelectedClass.classFileName);
+            ViewModels.ClassListViewModel.SaveClass(currentSelectedClass);
+        }
+
+        private async void RandomPickButton_Clicked(object sender, EventArgs e)
+        {
+            if(currentSelectedClass != null)
+            {
+                var randGenerator = new Random();
+                int randBound = currentSelectedClass.classStudentList.Count;
+
+                if(randBound <= 0)
+                {
+                    await DisplayAlert("Błąd", "Zbyt mała liczba uczniów, nie można losować", "OK");
+                }
+                else
+                {
+                    int randNumber = randGenerator.Next(0, randBound);
+                    try
+                    {
+                        pickedStudent = currentSelectedClass.classStudentList[randNumber];
+                    }
+                    catch(IndexOutOfRangeException ex)
+                    {
+                        await DisplayAlert("Błąd", "Wystąpił błąd podczas losowania", "OK");
+                    }
+                    finally
+                    {
+                        if(pickedStudent != null)
+                        {
+                            RandomPickNumberLabel.Text = pickedStudent.studentID.ToString();
+                            RandomPickNumberLabel.BackgroundColor = Colors.DarkBlue;
+                            RandomPickNameLabel.Text = $"{pickedStudent.StudentName} {pickedStudent.StudentSurname}";                            
+                            RandomPickTitleLabel.Text = "Wylosowano";
+                        }
+                    }
+                }                
+            }
+            else
+            {
+                await DisplayAlert("Błąd", "Wybierz klasę, z której ucznia chcesz losować", "OK");
+            }
         }
     }
  }

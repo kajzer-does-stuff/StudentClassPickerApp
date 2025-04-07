@@ -51,6 +51,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = StudentClassPicker.Views.A
 build_metadata.AdditionalFiles.TargetPath = Views\AddClassPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Views\AddClassPage.xaml
 
+[C:/Users/Kamil/source/repos/StudentClassPicker/StudentClassPicker/Views/AddStudentPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = StudentClassPicker.Views.AddStudentPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AddStudentPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AddStudentPage.xaml
+
 [C:/Users/Kamil/source/repos/StudentClassPicker/StudentClassPicker/Views/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = StudentClassPicker.Views.MainPage.xaml

@@ -3,12 +3,12 @@
     x:Class="StudentClassPicker.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:StudentClassPicker"
+    xmlns:views="clr-namespace:StudentClassPicker.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="StudentClassPicker">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"/>
+        ContentTemplate="{DataTemplate views:MainPage}"/>
 
 </Shell>

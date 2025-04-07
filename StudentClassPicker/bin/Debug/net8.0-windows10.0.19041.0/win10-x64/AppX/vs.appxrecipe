@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2025-04-06T23:36:44.850</Modified>
+      <Modified>2025-04-07T22:40:25.935</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2025-04-06T22:21:11.285</Modified>
+      <Modified>2025-04-07T21:22:14.320</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\StudentClassPicker.runtimeconfig.json">
       <PackagePath>StudentClassPicker.runtimeconfig.json</PackagePath>
@@ -44,11 +44,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\StudentClassPicker.dll">
       <PackagePath>StudentClassPicker.dll</PackagePath>
-      <Modified>2025-04-06T23:36:44.410</Modified>
+      <Modified>2025-04-07T22:40:25.371</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\obj\Debug\net8.0-windows10.0.19041.0\win10-x64\apphost.exe">
       <PackagePath>StudentClassPicker.exe</PackagePath>
-      <Modified>2025-04-06T23:36:44.415</Modified>
+      <Modified>2025-04-07T22:40:25.387</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\Resources\Raw\AboutAssets.txt">
       <PackagePath>AboutAssets.txt</PackagePath>
@@ -288,7 +288,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\source\repos\StudentClassPicker\StudentClassPicker\bin\Debug\net8.0-windows10.0.19041.0\win10-x64\StudentClassPicker.deps.json">
       <PackagePath>StudentClassPicker.deps.json</PackagePath>
-      <Modified>2025-04-06T22:21:11.015</Modified>
+      <Modified>2025-04-07T21:22:14.003</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kamil\.nuget\packages\microsoft.windows.sdk.net.ref\10.0.19041.44\lib\net8.0\Microsoft.Windows.SDK.NET.dll">
       <PackagePath>Microsoft.Windows.SDK.NET.dll</PackagePath>

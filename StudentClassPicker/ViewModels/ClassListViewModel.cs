@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -14,46 +15,88 @@ namespace StudentClassPicker.ViewModels
 
         public ClassListViewModel() => LoadClassList();
 
-        public void LoadClassList()
+        public async void LoadClassList()
         {
             ClassList.Clear();
-            string filePath = FileSystem.AppDataDirectory;
-
-            IEnumerable<Models.Class> classList = Directory
-                .EnumerateFiles(filePath, "*.class.json")
-                .Select(file =>
-                {
-                    try
-                    {
-                        Models.Class tempClass = JsonSerializer.Deserialize<Models.Class>(File.ReadAllText(file)!);
-                        return tempClass ?? new Models.Class();
-                    }
-                    catch (JsonException e)
-                    {
-                        return new Models.Class();
-                    }
-
-                })
-                .OrderBy(_class => _class.ClassName);
-
-            foreach (Models.Class _class in classList)
+            List<Models.Class> classList = [];
+            
+            try
             {
-                ClassList.Add(_class);
+                string saveData = File.ReadAllText(Models.SavePath.filePath);
+                classList = JsonSerializer.Deserialize<List<Models.Class>>(saveData);                                
+            }
+            finally
+            {
+                if(classList != null)
+                {
+                    foreach (Models.Class _class in classList)
+                    {
+                        ClassList.Add(_class);
+                    }
+                }
             }
         }
 
-        public static void SaveClass(Models.Class saveClass, string filePath)
+        public static void SaveClass(Models.Class saveClass)
         {
             if(saveClass != null)
             {
-                //dla globalnego zapisu:
-                //zczytaj wszystkie klasy z pliku do jednej kolekcji
-                //znajdź daną klasę i ją podmień
-                //zapisz kolekcję do jednego pliku
+                List<Models.Class> allClassList = [];                
 
-                string saveData = JsonSerializer.Serialize(saveClass);
-                File.WriteAllText(filePath, saveData);
+                try
+                {
+                    string allClassSaveData = File.ReadAllText(Models.SavePath.filePath);
+                    allClassList = JsonSerializer.Deserialize<List<Models.Class>>(allClassSaveData);
+                }
+                finally
+                {
+                    if(allClassList != null)
+                    {
+                        if (allClassList.Any(x => x.classID == saveClass.classID))
+                        {
+                            int index = allClassList.FindIndex(y => y.classID == saveClass.classID);
+                            if(index != -1)
+                            {
+                                allClassList[index] = saveClass;
+                            }
+                        }
+                        else
+                        {
+                            allClassList.Add(saveClass);
+                        }
+                    }
+                    string saveData = JsonSerializer.Serialize(allClassList);
+                    File.WriteAllText(Models.SavePath.filePath, saveData);
+                }                
             }
+        }
+        public static List<Models.Class> GetClassList()
+        {
+            List<Models.Class> classList = [];
+
+            try
+            {
+                string saveData = File.ReadAllText(Models.SavePath.filePath);
+                classList = JsonSerializer.Deserialize<List<Models.Class>>(saveData);
+            }
+            catch (JsonException e) { }
+
+            if (classList != null) return classList;
+            else return [];
+        }
+        public static int GetLastClassId()
+        {
+            List<Models.Class> classList = GetClassList();
+
+            if (classList != null)
+            {
+                var highestIdClass = classList.MaxBy(x => x.classID);
+                if (highestIdClass != null)
+                {
+                    return highestIdClass.classID;
+                }
+            }
+            return -1;
         }
     }
 }

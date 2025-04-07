@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentClassPicker.Views.AddClassPage"
-             Title="Nowa klasa"
+             x:Class="StudentClassPicker.Views.AddStudentPage"
+             Title="Nowy uczeń"
              BackgroundColor="#111">
     <Grid
-        ColumnDefinitions="*,*,*" RowDefinitions="*,*"
+        ColumnDefinitions="*,*" RowDefinitions="*,*"
         WidthRequest="600"
         HeightRequest="200"
         VerticalOptions="Center"
         HorizontalOptions="Center"
         BackgroundColor="#333">
         <Editor
-            x:Name="NewClassNameEditor"
-            Placeholder="Nazwa klasy"
-            WidthRequest="600"
+            x:Name="NewStudentNameEditor"
+            Placeholder="Imię"
+            WidthRequest="300"
             HeightRequest="100"
             Grid.Column="0"
             Grid.Row="0"
-            Grid.ColumnSpan="3"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            PlaceholderColor="Gray"
+            TextColor="White"
+            FontSize="Large"/>
+        <Editor
+            x:Name="NewStudentSurnameEditor"
+            Placeholder="Nazwisko"
+            WidthRequest="300"
+            HeightRequest="100"
+            Grid.Column="1"
+            Grid.Row="0"
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
             PlaceholderColor="Gray"
             TextColor="White"
             FontSize="Large"/>
         <Button
-            x:Name="AddClassButton"
+            x:Name="AddStudentButton"
             WidthRequest="150"
             Margin="25"
             Grid.Column="0"
             Grid.Row="1"
-            Text="Dodaj klasę"
+            Text="Dodaj ucznia"
             ImageSource="{FontImage Glyph='+', Color=White, Size=22}"
-            Clicked="AddClassButton_Clicked"/>
-        <Button
-            x:Name="LoadClassButton"
-            WidthRequest="150"
-            Margin="25"
-            Grid.Column="1"
-            Grid.Row="1"
-            Text="Wczytaj klasę"
-            ImageSource="{FontImage Glyph='+', Color=White, Size=22}"
-            Clicked="LoadClassButton_Clicked"/>
+            Clicked="AddStudentButton_Clicked"/>
         <Button
             x:Name="CancelButton"
             WidthRequest="150"
@@ -50,6 +52,6 @@
             Grid.Row="1"
             Text="Anuluj"
             ImageSource="{FontImage Glyph='&#10005;', Color=White, Size=17}"
-            Clicked="CancelButton_Clicked"/>    
-    </Grid>        
+            Clicked="CancelButton_Clicked"/>
+    </Grid>
 </ContentPage>
