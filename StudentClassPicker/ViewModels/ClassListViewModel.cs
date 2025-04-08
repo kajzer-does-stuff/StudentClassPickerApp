@@ -22,6 +22,11 @@ namespace StudentClassPicker.ViewModels
             
             try
             {
+                if (!File.Exists(Models.SavePath.filePath))
+                {
+                    File.Create(Models.SavePath.filePath);
+                    File.WriteAllText(Models.SavePath.filePath, "[]");
+                }
                 string saveData = File.ReadAllText(Models.SavePath.filePath);
                 classList = JsonSerializer.Deserialize<List<Models.Class>>(saveData);                                
             }
@@ -83,6 +88,20 @@ namespace StudentClassPicker.ViewModels
 
             if (classList != null) return classList;
             else return [];
+        }
+
+        public static void DeleteClass(Models.Class deleteClass)
+        {
+            List<Models.Class> allClassList = GetClassList();
+
+            if (allClassList.Any(x => x.classID == deleteClass.classID))
+            {
+                allClassList.RemoveAll(y => y.classID == deleteClass.classID);
+
+                string saveData = JsonSerializer.Serialize(allClassList);
+                File.WriteAllText(Models.SavePath.filePath, saveData);
+            }
+            
         }
         public static int GetLastClassId()
         {

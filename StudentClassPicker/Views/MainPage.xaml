@@ -35,14 +35,25 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Editor
-                            x:Name="ClassNameEditor"
-                            Text="{Binding ClassName}"
-                            TextColor="White"
-                            FontSize="Medium"
-                            WidthRequest="300"
-                            BackgroundColor="#444"
-                            TextChanged="ClassNameEditor_TextChanged"/>   
+                        <HorizontalStackLayout
+                             BackgroundColor="#444">
+                            <Editor
+                                x:Name="ClassNameEditor"
+                                Text="{Binding ClassName}"
+                                TextColor="White"
+                                FontSize="Medium"
+                                WidthRequest="200"
+                                Margin="0, 0, 150, 0"
+                                TextChanged="ClassNameEditor_TextChanged"/>
+                            <Button
+                                x:Name="ClassDeleteButton"
+                                HeightRequest="50"
+                                WidthRequest="50"
+                                BackgroundColor="Red"
+                                ImageSource="{FontImage Glyph='&#10005;', Color=White, Size=25}"
+                                HorizontalOptions="Center"
+                                Clicked="ClassDeleteButton_Clicked"/>     
+                        </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
                 
@@ -141,7 +152,7 @@
         </VerticalStackLayout>
 
         <VerticalStackLayout
-            WidthRequest="300"
+            WidthRequest="400"
             HeightRequest="600"
             Margin="20"
             BackgroundColor="#333">

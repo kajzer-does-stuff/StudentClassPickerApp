@@ -51,6 +51,7 @@
             Grid.Column="2"
             Grid.Row="1"
             Text="Anuluj"
+            BackgroundColor="Red"
             ImageSource="{FontImage Glyph='&#10005;', Color=White, Size=17}"
             Clicked="CancelButton_Clicked"/>
     </Grid>

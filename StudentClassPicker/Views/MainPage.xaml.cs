@@ -49,6 +49,17 @@ namespace StudentClassPicker.Views
                 SelectedClassNameLabel.Text = editedName;
             }
         }
+        private void ClassDeleteButton_Clicked(object sender, EventArgs e)
+        {
+            Class senderClass = (Class)(sender as Button).BindingContext;
+ 
+            ViewModels.ClassListViewModel.DeleteClass(senderClass);
+            currentSelectedClass = null;
+
+            BindingContext = new ViewModels.ClassListViewModel();
+            SelectedClassNameLabel.Text = "Wybierz klasę";
+            CurrentStudentList.BindingContext = null;           
+        }
 
         private async void AddClassButton_Clicked(object sender, EventArgs e)
         {
@@ -128,7 +139,7 @@ namespace StudentClassPicker.Views
                         if(pickedStudent != null)
                         {
                             RandomPickNumberLabel.Text = pickedStudent.studentID.ToString();
-                            RandomPickNumberLabel.BackgroundColor = Colors.DarkBlue;
+                            RandomPickNumberLabel.BackgroundColor = Colors.DarkMagenta;
                             RandomPickNameLabel.Text = $"{pickedStudent.StudentName} {pickedStudent.StudentSurname}";                            
                             RandomPickTitleLabel.Text = "Wylosowano";
                         }
